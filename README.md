@@ -10,3 +10,6 @@
    1. `python manage.py makemigrations`
    2. `python manage.py migrate` 
 5. Corre el servidor de desarrollo ejecutando: `python manage.py runserver` 
+
+## Creacion de usuario admin
+1. Crea un super usuario y completa los datos, ejecutando: `python manage.py createsuperuser`
