@@ -1,0 +1,21 @@
+{% extends 'mi_app/bases/base.html' %}
+
+{% load static %}
+
+{% block title %} Detalle del Pedido {% endblock title %}
+
+{% block main %}
+<h2>Detalle del Pedido</h2>
+<p><strong>Pedido #:</strong> {{ order.id }}</p>
+<p><strong>Cliente:</strong> {{ order.customer.first_name }} {{ order.customer.last_name }}</p>
+<p><strong>Email:</strong> {{ order.customer.email }}</p>
+<p><strong>Teléfono:</strong> {{ order.customer.phone }}</p>
+<h3>Productos</h3>
+<ul>
+    {% for item in order_items %}
+        <li>{{ item.product.title }} - Autor: {{ item.product.author }} - Cantidad: {{ item.quantity }}</li>
+    {% empty %}
+        <li>No hay productos en este pedido.</li>
+    {% endfor %}
+</ul>
+{% endblock main %}

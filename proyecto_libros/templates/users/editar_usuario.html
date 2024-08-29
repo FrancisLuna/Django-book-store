@@ -1,0 +1,20 @@
+{% extends 'mi_app/bases/base.html' %}
+
+
+{% load static %}
+
+{% block title %} Login {% endblock title %}
+
+{% block main %}
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <table>
+            {{ mi_form.as_table }}
+        </table>
+        <a class="btn btn-primary" href="{% url 'CambiarPass' %}">Cambiar contraseña</a>
+        <input type="submit" value="Actualizar">
+
+    </form>
+
+{% endblock main %}

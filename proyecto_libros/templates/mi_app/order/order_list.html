@@ -1,0 +1,20 @@
+{% extends 'mi_app/bases/base.html' %}
+
+
+{% load static %}
+
+{% block title %} Libros actuales {% endblock title %}
+
+{% block main %}
+<h1>Ordenes</h1>
+<ul>
+    {% for order in orders %}
+        <li>
+            <a href="{% url 'order_detail' order.pk %}">Order #{{ order.id }}</a>
+            by {{ order.customer }}
+        </li>
+    {% endfor %}
+</ul>
+<a href="{% url 'create_order' %}">Crear nueva orden</a>
+
+{% endblock main %}

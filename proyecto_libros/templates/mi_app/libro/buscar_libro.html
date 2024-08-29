@@ -1,0 +1,29 @@
+{% extends 'mi_app/bases/base.html' %}
+
+{% load static %}
+
+{% block title %} Inicio {% endblock title %}
+
+{% block main %}
+<h1>Buscar Libros</h1>
+<form method="get" action="{% url 'buscar_libro' %}">
+    <div class="input-group mb-3">
+        <input type="text" name="q" class="form-control" placeholder="Buscar por título" value="{{ query }}">
+        <button class="btn btn-outline-secondary" type="submit"><i class="bi bi-search"></i></button>
+    </div>
+</form>
+
+{% if resultados %}
+    <h2>Resultados de la búsqueda:</h2>
+    <ul class="list-group">
+        {% for libro in resultados %}
+            <li class="list-group-item">
+                <a href="{% url 'book_isbn' libro.isbn %}">{{ libro.title }}</a> por {{ libro.author }}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>No se encontraron resultados.</p>
+{% endif %}
+{% endblock main %}
+

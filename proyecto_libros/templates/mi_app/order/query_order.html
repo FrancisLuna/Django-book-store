@@ -1,0 +1,28 @@
+{% extends 'mi_app/bases/base.html' %}
+
+
+{% load static %}
+
+{% block title %} Consulta de Pedido {% endblock title %}
+
+{% block main %}
+<h2>Consultar Pedido</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Consultar</button>
+</form>
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+{% if order %}
+<h3>Detalle del Pedido</h3>
+<p>Pedido #: {{ order.id }}</p>
+<p>Cliente: {{ order.customer }}</p>
+<ul>
+    {% for item in order_items %}
+    <li>{{ item.product.title }} - Cantidad: {{ item.quantity }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock main %}

@@ -1,0 +1,41 @@
+{% extends 'mi_app/bases/base.html' %}
+
+
+{% load static %}
+
+{% block title %} Inicio {% endblock title %}
+
+{% block main %}
+    <!-- Content section 1-->
+    <section id="scroll">
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'mi_app/assets/img/profile_2.jpeg' %}" alt="..." /></div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="p-5">
+                        <h2 class="display-4">Nombre y Apellido 1</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Praesentium quos voluptate exercitationem architecto deleniti ipsa sint cum enim eligendi at. Amet mollitia debitis error harum repudiandae dolore soluta atque! Consequuntur quod maiores provident repellat cupiditate, ratione voluptate nesciunt tempora consectetur itaque, voluptas facere, amet sunt iure hic repudiandae a atque!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Content section 2-->
+    <section>
+        <div class="container px-5">
+            <div class="row gx-5 align-items-center">
+                <div class="col-lg-6">
+                    <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'mi_app/assets/img/profile_2.jpeg' %}" alt="..." /></div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-5">
+                        <h2 class="display-4">Nombre y Apellido 2</h2>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ullam dolores iure, quasi hic architecto, consequuntur ad earum aliquid repellendus expedita vitae ut doloremque, pariatur iusto quibusdam illo tempore est.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endblock main %}

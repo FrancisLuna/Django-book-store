@@ -1,0 +1,18 @@
+{% extends 'mi_app/bases/base.html' %}
+
+
+{% load static %}
+
+{% block title %} Libros actuales {% endblock title %}
+
+{% block main %}
+    <h2>Pedido Confirmado</h2>
+    <p>Pedido #: {{ order.id }}</p>
+    <p>Cliente: {{ order.customer }}</p>
+    <h3>Productos</h3>
+    <ul>
+        {% for item in order_items %}
+            <li>{{ item.product.title }} - Cantidad: {{ item.quantity }}</li>
+        {% endfor %}
+    </ul>
+{% endblock main %}

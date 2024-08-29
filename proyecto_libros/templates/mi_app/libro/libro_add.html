@@ -1,0 +1,20 @@
+{% extends 'mi_app/bases/base.html' %}
+
+{% load static %}
+
+{% block title %} Inicio {% endblock title %}
+
+{% block main %}
+
+<h2>Crear Producto</h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    {{ formset.management_form }}
+    <h3>Imágenes del Producto (mínimo 1, máximo 10)</h3>
+    {% for form in formset %}
+    {{ form.as_p }}
+    {% endfor %}
+    <button type="submit">Guardar</button>
+</form>
+{% endblock main %}

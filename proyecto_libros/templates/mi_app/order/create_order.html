@@ -1,0 +1,46 @@
+{% extends 'mi_app/bases/base.html' %}
+
+
+{% load static %}
+
+{% block title %} Libros actuales {% endblock title %}
+
+{% block main %}
+    <h2>Formulario de Pedido</h2>
+    <form method="post" id="order-form">
+        {% csrf_token %}
+                
+        <h3>Agregar Productos</h3>
+        <div id="order-items-container">
+            <div class="order-item-form">
+                <select name="book" class="form-control" required>
+                    <option value="">Seleccione un libro</option>
+                    {% for libro in libros %}
+                        <option value="{{ libro.isbn }}">{{ libro.title }} - {{ libro.author }}</option>
+                    {% endfor %}
+                </select>
+                <input type="number" name="quantity" min="1" class="form-control" placeholder="Cantidad" required>
+            </div>
+        </div>
+        <button type="button" id="add-item" class="btn btn-secondary">Agregar otro producto</button>
+        <button type="submit" class="btn btn-primary">Crear Pedido</button>
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </form>
+    {% if error_message %}
+    <div class="alert alert-danger">
+        <strong>Error:</strong> {{ error_message }}
+        <br>
+        {{ error_details }}
+    </div>
+    {% endif %}
+    <script>
+        document.getElementById('add-item').addEventListener('click', function() {
+            var container = document.getElementById('order-items-container');
+            var newItem = container.children[0].cloneNode(true);
+            container.appendChild(newItem);
+        });
+
+    </script>
+{% endblock main %}

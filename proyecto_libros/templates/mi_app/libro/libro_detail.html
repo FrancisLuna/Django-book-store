@@ -1,0 +1,36 @@
+{% extends 'mi_app/bases/base.html' %}
+
+{% load static %}
+{% block title %} {{ libro.title }} {% endblock title %}
+{% block main %}
+<h1>{{ libro.title }}</h1>
+<p><strong>Autor:</strong> {{ libro.author }}</p>
+<p><strong>Precio:</strong> ${{ libro.price }}</p>
+<p><strong>Fecha de adición:</strong> {{ libro.date_added }}</p>
+<p><strong>stock:</strong> {{ libro.stock }}</p>
+
+<h2>Descripción</h2>
+<p>{{ libro.description|safe }}</p>
+
+<h2>Imágenes</h2>
+<ul>
+    {% for image in libro.images.all %}
+        <li><img src="{{ image.image.url }}" alt="{{ libro.title }}"></li>
+    {% empty %}
+        <li>No hay imágenes disponibles.</li>
+    {% endfor %}
+</ul>
+{% endblock main %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var carousels = document.querySelectorAll('.carousel');
+        carousels.forEach(function(carousel) {
+            new bootstrap.Carousel(carousel, {
+                interval: false // This prevents auto-sliding
+            });
+        });
+    });
+</script>
+{% endblock extra_js %}

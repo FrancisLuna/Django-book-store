@@ -1,0 +1,71 @@
+{% extends 'mi_app/bases/base.html' %}
+
+{% load static %}
+{% block title %} Libros actuales {% endblock title %}
+{% block main %}
+<h1>Lista de Libros</h1>
+
+{% if libros %}
+    <div class="row">
+        {% for libro in libros %}
+            <div class="col-md-4 mb-4">
+                <a href="{% url 'book_isbn' libro.isbn %}" class="text-decoration-none">
+                    <div class="card libro" style="width: 18rem;">
+                        {% if libro.images.all %}
+                            <div id="carouselLibro{{ forloop.counter }}" class="carousel slide" data-bs-ride="carousel">
+                                <div class="carousel-indicators">
+                                    {% for imagen in libro.images.all %}
+                                        <button type="button" data-bs-target="#carouselLibro{{ forloop.parentloop.counter }}" data-bs-slide-to="{{ forloop.counter0 }}" {% if forloop.first %}class="active" aria-current="true"{% endif %} aria-label="Slide {{ forloop.counter }}"></button>
+                                    {% endfor %}
+                                </div>
+                                <div class="carousel-inner">
+                                    {% for imagen in libro.images.all %}
+                                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                            <img src="{{ imagen.image.url }}" class="d-block w-100" alt="{{ libro.title }} - Imagen {{ forloop.counter }}">
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselLibro{{ forloop.counter }}" data-bs-slide="prev">
+                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Anterior</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#carouselLibro{{ forloop.counter }}" data-bs-slide="next">
+                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                    <span class="visually-hidden">Siguiente</span>
+                                </button>
+                            </div>
+                        {% else %}
+                            <p>No hay imágenes disponibles.</p>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ libro.title }}</h5>
+                            <p class="card-text">Autor: {{ libro.author }}</p>
+                            <p class="card-text">Precio: {{ libro.price }}</p>
+                            {% if user.is_staff %}
+                                <a href="{% url 'libro_update' libro.isbn %}" class="btn btn-primary">Editar</a>
+                                <a href="{% url 'libro_delete' libro.isbn %}" class="btn btn-danger">Eliminar</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No hay libros disponibles.</p>
+{% endif %}
+
+{% endblock main %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var carousels = document.querySelectorAll('.carousel');
+        carousels.forEach(function(carousel) {
+            new bootstrap.Carousel(carousel, {
+                interval: false // Esto evita el deslizamiento automático
+            });
+        });
+    });
+</script>
+{% endblock extra_js %}
