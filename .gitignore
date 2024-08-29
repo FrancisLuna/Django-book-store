@@ -1,0 +1,72 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+
+# Django stuff:
+*.log
+*.pot
+*.pyc
+*.pyo
+*.mo
+*.compiled
+
+# Django migrations
+**/migrations/
+
+# If you are using the django secret key in a settings file
+*.secrets
+
+# Static files
+staticfiles/
+
+# Media files
+media/
+
+# Testing
+.pytest_cache/
+coverage/
+.tox/
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+.hypothesis/
+
+# Environments
+.env
+*.env
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Other files that should be ignored
+*.DS_Store
+Thumbs.db
+.DS_Store
+*.swp
+*.swo
+.vscode/
+*.sqlite3
+Pipfile
+*.lock
